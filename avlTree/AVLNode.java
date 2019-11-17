@@ -37,7 +37,7 @@ class AVLNode<ValueType extends Indexable> {
     }
 
     public int getBalanceFactor() {
-        int leftHeight = left == null ? 0 : 1 + getLeft().getHeight();
+        int leftHeight  = left == null ? 0 : 1 + getLeft().getHeight();
         int rightHeight = right == null ? 0 : 1 + getRight().getHeight();
 
         return leftHeight - rightHeight;

@@ -21,8 +21,8 @@ public class AVLMain {
             avl.insert(new Pessoa(i));
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime); // Duração em milissegundos.
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime); // Duração em milissegundos.
 
         System.out.println("ÁRVORE AVL [INSERÇÃO]: " + time + " ms");
     }
@@ -34,8 +34,8 @@ public class AVLMain {
             avl.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("ÁRVORE AVL [BUSCA]: " + time + " ms");
     }
@@ -47,15 +47,17 @@ public class AVLMain {
             avl.remove(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("ÁRVORE AVL [REMOÇÃO]: " + time + " ms");
     }
 
-     /*  Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
-Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
-e remove 1.000.000 de elementos em ordem decrescente. */
+    /* 
+    * Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
+    * Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
+    * e remove 1.000.000 de elementos em ordem decrescente. 
+    */
 
    public void randomInsert() {
         long firstTime = System.currentTimeMillis();
@@ -70,8 +72,8 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             avl.insert(new Pessoa(value));
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime); // Duração em milissegundos.
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime); // Duração em milissegundos.
 
         System.out.println("Árvore AVL [INSERÇÃO RANDÔMICA]: " + time + "ms");
     }
@@ -83,8 +85,8 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             avl.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore AVL [BUSCA DECRESCENTE]: " + time + "ms");
     }
@@ -96,8 +98,8 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             avl.remove(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore AVL [REMOÇÃO DECRESCENTE]: " + time + "ms");
     }

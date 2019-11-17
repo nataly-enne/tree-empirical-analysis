@@ -18,8 +18,8 @@ public class RedBlackTree<ValueType extends Comparable> {
 
     //  Atribuimos "nada" para os nós.
     public RedBlackTree() {  
-        root.left = nada;
-        root.right = nada;
+        root.left   = nada;
+        root.right  = nada;
         root.parent = nada;
     }
 
@@ -34,7 +34,7 @@ public class RedBlackTree<ValueType extends Comparable> {
         
         // Executa a rotação à esquerda.
         RedBlackNode<ValueType> y;
-        y = x.right;
+        y       = x.right;
         x.right = y.left;
         
 
@@ -55,7 +55,7 @@ public class RedBlackTree<ValueType extends Comparable> {
         else  
             x.parent.right = y;
             
-        y.left = x;
+        y.left   = x;
         x.parent = y;
     }
 
@@ -96,24 +96,23 @@ public class RedBlackTree<ValueType extends Comparable> {
         // Chama o rightTurnFix para ajustar os valores de numberRight e numberLeft
         rightTurnFix(y);
         
-
-        // Execute a rotação.
+        // Executa a rotação.
         RedBlackNode<ValueType> x = y.left;
         y.left = x.right;
 
         // Verifica a existencia de x.right
         if (!isNil(x.right))
-            x.right.parent = y;
-            x.parent = y.parent;
+            x.right.parent  = y;
+            x.parent        = y.parent;
         if (isNil(y.parent)) // Se y.parent "é nada".
             root = x;
         else if (y.parent.right == y) // Senão, se y é o filho da direita do pai
             y.parent.right = x;
         // Senão, y é o filho da esquerda de seu pai.
         else
-            y.parent.left = x;
-            x.right = y;
-            y.parent = x;
+            y.parent.left   = x;
+            x.right         = y;
+            y.parent        = x;
     }
 
     // ""y"" é o nó em torno do qual o righTurn() deve ser executado.
@@ -223,8 +222,8 @@ public class RedBlackTree<ValueType extends Comparable> {
                 // Caso 3: senão y é preto e z é filho da esquerda
                 else{
                     // Recolore e ""gira"" o avô de z
-                    z.parent.color = RedBlackNode.black;
-                    z.parent.parent.color = RedBlackNode.red;
+                    z.parent.color          = RedBlackNode.black;
+                    z.parent.parent.color   = RedBlackNode.red;
                     rightTurn(z.parent.parent);
                 }
             }
@@ -234,9 +233,9 @@ public class RedBlackTree<ValueType extends Comparable> {
 
                 // Caso 1: se y é vermelho, recolorir.
                 if (y.color == RedBlackNode.red) {
-                    z.parent.color = RedBlackNode.black;
-                    y.color = RedBlackNode.black;
-                    z.parent.parent.color = RedBlackNode.red;
+                    z.parent.color          = RedBlackNode.black;
+                    y.color                 = RedBlackNode.black;
+                    z.parent.parent.color   = RedBlackNode.red;
                     z = z.parent.parent;
                 }
                 // Caso 2: senão, y é preto e z é filho da esquerda.
@@ -334,18 +333,18 @@ public class RedBlackTree<ValueType extends Comparable> {
         
         // Inicializando duas variáveis ​​que ajudarão a percorrer a Árvore R.N.
         RedBlackNode<ValueType> current = nada;
-        RedBlackNode<ValueType> track = nada;
+        RedBlackNode<ValueType> track   = nada;
         
          // Se x for nulo, dá inicio a atualização em y.parent
         // Seta a faixa como y, filho de y.parent.
         if (isNil(x)) {
             current = y.parent;
-            track = y;
+            track   = y;
         }
         // Se x não for "nada", então começa a atualizar em x.parent.
         else{
             current = x.parent;
-            track = x;
+            track   = x;
         }
         // Enquanto não chega na raiz, faça:
         while (!isNil(current)) {
@@ -371,7 +370,7 @@ public class RedBlackTree<ValueType extends Comparable> {
                 else if (track == current.left) current.numberLeft--;
             }
             // Atualizando track e current.
-            track = current;
+            track   = current;
             current = current.parent;
         }
     }
@@ -391,29 +390,28 @@ public class RedBlackTree<ValueType extends Comparable> {
                 n = x.parent.right;
                 // Caso 1: a cor de n é vermelho.
                 if (n.color == RedBlackNode.red) {
-                    n.color = RedBlackNode.black;
-                    x.parent.color = RedBlackNode.red;
+                    n.color         = RedBlackNode.black;
+                    x.parent.color  = RedBlackNode.red;
                     leftTurn(x.parent);
                     n = x.parent.right;
                 }
                 // Caso 2: os dois filhos de n são pretos.
-                if (n.left.color == RedBlackNode.black &&
-                        n.right.color == RedBlackNode.black) {
+                if (n.left.color == RedBlackNode.black && n.right.color == RedBlackNode.black) {
                     n.color = RedBlackNode.red;
-                    x = x.parent;
+                    x       = x.parent;
                 }
                 else{
                     // Caso 3: o filho da direita de n é preto.
                     if (n.right.color == RedBlackNode.black) {
-                        n.left.color = RedBlackNode.black;
-                        n.color = RedBlackNode.red;
+                        n.left.color    = RedBlackNode.black;
+                        n.color         = RedBlackNode.red;
                         rightTurn(n);
                         n = x.parent.right;
                     }
                     // caso 4: n é preto, n.right é vermelho.
                     n.color = x.parent.color;
-                    x.parent.color = RedBlackNode.black;
-                    n.right.color = RedBlackNode.black;
+                    x.parent.color  = RedBlackNode.black;
+                    n.right.color   = RedBlackNode.black;
                     leftTurn(x.parent);
                     x = root;
                 }
@@ -424,29 +422,28 @@ public class RedBlackTree<ValueType extends Comparable> {
                 n = x.parent.left;
                 // Caso 1: a cor de n é vermelho.
                 if (n.color == RedBlackNode.red) {
-                    n.color = RedBlackNode.black;
-                    x.parent.color = RedBlackNode.red;
+                    n.color         = RedBlackNode.black;
+                    x.parent.color  = RedBlackNode.red;
                     rightTurn(x.parent);
                     n = x.parent.left;
                 }
                 //Caso 2: os dois filhos de n são pretos.
-                if (n.right.color == RedBlackNode.black &&
-                        n.left.color == RedBlackNode.black) {
+                if (n.right.color == RedBlackNode.black && n.left.color == RedBlackNode.black) {
                     n.color = RedBlackNode.red;
-                    x = x.parent;
+                    x       = x.parent;
                 }
                 else{
                     // Caso 3: o filho esquerdo de n é preto.
                     if (n.left.color == RedBlackNode.black) {
-                        n.right.color = RedBlackNode.black;
-                        n.color = RedBlackNode.red;
+                        n.right.color   = RedBlackNode.black;
+                        n.color         = RedBlackNode.red;
                         leftTurn(n);
                         n = x.parent.left;
                     }
                     // Caso 4: n é preto e n.left é vermelho.
-                    n.color = x.parent.color;
-                    x.parent.color = RedBlackNode.black;
-                    n.left.color = RedBlackNode.black;
+                    n.color         = x.parent.color;
+                    x.parent.color  = RedBlackNode.black;
+                    n.left.color    = RedBlackNode.black;
                     rightTurn(x.parent);
                     x = root;
                 }
@@ -489,7 +486,7 @@ public class RedBlackTree<ValueType extends Comparable> {
     
     // ""key"" é qualquer objeto comparável
     // ""return"" retorna o número de elementos menor que a chave.
-    public int SmallerNumber(ValueType key) {]
+    public int SmallerNumber(ValueType key) {
         /* Chama findSmallerNumber(root, key) que retornará 
         * o número de nós cuja chave é maior que key */
         return findSmallerNumber(root,key);
@@ -549,7 +546,7 @@ public class RedBlackTree<ValueType extends Comparable> {
         /* Se a chave for maior que o node.key, todos os elementos à esquerda do nó 
         * são menores que a chave. Assim, adiciona-o  ao total e olha para a direita. */
         else
-            return 1+ node.numberLeft + findSmallerNumber(node.right,key);
+            return 1 + node.numberLeft + findSmallerNumber(node.right,key);
     }
     
     // "node" é um RedBlackNode. Aqui é uma espécie de @Override que verifica se é nulo/nada.

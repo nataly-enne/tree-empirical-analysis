@@ -17,8 +17,8 @@ public class RedBlackMain {
             treeRB.insert(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime); // Duração em milissegundos.
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime); // Duração em milissegundos.
 
         System.out.println("Árvore Rubro Negra [INSERÇÃO]: " + time + " ms");
     }
@@ -30,8 +30,8 @@ public class RedBlackMain {
             treeRB.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Rubro Negra [BUSCA]: " + time + " ms");
     }
@@ -43,15 +43,17 @@ public class RedBlackMain {
             treeRB.remove(treeRB.search(i));
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Rubro Negra [REMOÇÃO]: " + time + " ms");
     }
 
-    /*  Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
-Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
-e remove 1.000.000 de elementos em ordem decrescente. */
+    /* 
+    * Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
+    * Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
+    * e remove 1.000.000 de elementos em ordem decrescente. 
+    */
 
     public void randomInsert() {
         long firstTime = System.currentTimeMillis();
@@ -66,10 +68,10 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             treeRB.insert(value);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
-        System.out.println("Árvore Rubro Negra [INSERÇÃO RANDOÔMICA]: " + time + "ms");
+        System.out.println("Árvore Rubro Negra [INSERÇÃO RANDOÔMICA]: " + time + " ms");
     }
 
     public void decreasingSearch() {
@@ -79,10 +81,10 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             treeRB.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
-        System.out.println("Árvore Rubro Negra [BUSCA DECRESCENTE]: " + time + "ms");
+        System.out.println("Árvore Rubro Negra [BUSCA DECRESCENTE]: " + time + " ms");
     }
 
     public void decreasingRemove() {
@@ -94,10 +96,10 @@ e remove 1.000.000 de elementos em ordem decrescente. */
                 treeRB.remove(node);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
-        System.out.println("Árvore Rubro Negra [REMOÇÃO DECRESCENTE]: " + time + "ms");
+        System.out.println("Árvore Rubro Negra [REMOÇÃO DECRESCENTE]: " + time + " ms");
     }
 
     public void testRB() {

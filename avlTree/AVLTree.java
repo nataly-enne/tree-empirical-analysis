@@ -91,7 +91,6 @@ public class AVLTree<ValueType extends Indexable> {
         while (max.getRight() != null) {
             max = max.getRight();
         }
-
         return max;
     }
 
@@ -99,15 +98,14 @@ public class AVLTree<ValueType extends Indexable> {
         if (parent == null) {
             return node;
         }
-
         if (node.getValue().getKey() == parent.getValue().getKey()) {
             parent.setValue(node.getValue());
             return parent;
         }
-
         if (node.getValue().getKey() < parent.getValue().getKey()) {
             parent.setLeft(insert(node, parent.getLeft()));
-        } else {
+        } 
+        else {
             parent.setRight(insert(node, parent.getRight()));
         }
 
@@ -124,22 +122,24 @@ public class AVLTree<ValueType extends Indexable> {
         }
 
         if (parent.getBalanceFactor() > 1) {
-            //L
+            // L
             if (parent.getLeft().getBalanceFactor() > 0) {
-                //LL
+                // LL
                 return rotateRight(parent);
-            } else {
-                //LR
+            } 
+            else{
+                // LR
                 parent.setLeft(rotateLeft(parent.getLeft()));
                 return rotateRight(parent);
             }
-        } else {
-            //R
+        } 
+        else{
+            // R
             if (parent.getRight().getBalanceFactor() < 0) {
-                //RR
+                // RR
                 return rotateLeft(parent);
             } else {
-                //RL
+                // RL
                 parent.setRight(rotateRight(parent.getRight()));
                 return rotateLeft(parent);
             }

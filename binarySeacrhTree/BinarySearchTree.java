@@ -33,7 +33,8 @@ public class BinarySearchTree {
                 if (parent.getLeft() == null) {
                     parent.setLeft(node);
                     break;
-                } else {
+                } 
+                else{
                     parent = parent.getLeft();
                     continue;
                 }
@@ -42,7 +43,8 @@ public class BinarySearchTree {
             if (parent.getRight() == null) {
                 parent.setRight(node);
                 break;
-            } else {
+            } 
+            else{
                 parent = parent.getRight();
             }
         }
@@ -54,9 +56,11 @@ public class BinarySearchTree {
         while (current != null) {
             if (key == current.getValue())  {
                 return true;
-            } else if (key < current.getValue()) {
+            } 
+            else if (key < current.getValue()) {
                 current = current.getLeft();
-            } else {
+            } 
+            else{
                 current = current.getRight();
             }
         }
@@ -77,17 +81,21 @@ public class BinarySearchTree {
                 if (current.getRight() != null) {
                     parent  = current;
                     current = current.getRight();
-                } else {
+                } 
+                else {
                     break;
                 }
-            } else if (key < current.getValue()) {
+            } 
+            else if (key < current.getValue()) {
                 if (current.getLeft() != null) {
                     parent = current;
                     current = current.getLeft();
-                } else {
+                } 
+                else {
                     break;
                 }
-            } else {
+            } 
+            else {
                 if (current.isLeaf()) {
                     if (parent == null) {
                         root = null;
@@ -96,7 +104,8 @@ public class BinarySearchTree {
                     } else {
                         parent.setRight(null);
                     }
-                } else if (current.getRight() == null) {
+                } 
+                else if (current.getRight() == null) {
                     if (parent == null) {
                         root = current.getLeft();
                     } else if (parent.getLeft() == current) {
@@ -104,7 +113,8 @@ public class BinarySearchTree {
                     } else {
                         parent.setRight(current.getLeft());
                     }
-                } else if (current.getLeft() == null) {
+                } 
+                else if (current.getLeft() == null) {
                     if (parent == null) {
                         root = current.getRight();
                     } else if (parent.getLeft() == current) {
@@ -112,7 +122,8 @@ public class BinarySearchTree {
                     } else {
                         parent.setRight(current.getRight());
                     }
-                } else {
+                } 
+                else {
                     int sucessorKey = getSucessorKey(current);
                     remove(sucessorKey);
                     current.setValue(sucessorKey);

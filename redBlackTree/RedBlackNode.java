@@ -26,12 +26,12 @@ class RedBlackNode<ValueType extends Comparable> {
     public int color;
 
     public RedBlackNode() { // Inicializando os atributos no construtor padrão.
-        color = black;
-        numberLeft = 0;
+        color       = black;
+        numberLeft  = 0;
         numberRight = 0;
-        parent = null;
-        left = null;
-        right = null;
+        parent      = null;
+        left        = null;
+        right       = null;
     }
 
     public RedBlackNode(ValueType key) { // Construtor que define a chave passada como argumento.

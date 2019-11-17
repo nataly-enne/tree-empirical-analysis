@@ -19,8 +19,8 @@ public class BinarySearchMain {
             binaryTree.insert(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime); // Duração em milissegundos.
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime); // Duração em milissegundos.
 
         System.out.println("Árvore Binária de Busca [INSERÇÃO]: " + time + " ms");
     }
@@ -32,8 +32,8 @@ public class BinarySearchMain {
             binaryTree.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Binária de Busca [BUSCA]: " + time + " ms");
     }
@@ -45,15 +45,17 @@ public class BinarySearchMain {
             binaryTree.remove(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Binária de Busca [REMOÇÃO]: " + time + " ms");
     }
 
-        /*  Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
-Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
-e remove 1.000.000 de elementos em ordem decrescente. */
+    /* 
+    * Parte que insere 500.000 elementos 1 entre 1 e 1.000.000 em ordem aleatória.
+    * Busca 1.000.000 de elementos em ordem decrescente (de 1.000.000 até 1)
+    * e remove 1.000.000 de elementos em ordem decrescente. 
+    */
 
      public void randomInsert() {
         long firstTime = System.currentTimeMillis();
@@ -68,8 +70,8 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             binaryTree.insert(value);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime); // Duração em milissegundos.
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime); // Duração em milissegundos.
 
         System.out.println("Árvore Binária de Busca [INSERÇÃO RANDÔMICA]: " + time + "ms");
     }
@@ -81,8 +83,8 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             binaryTree.search(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Binária de Busca [BUSCA DECRESCENTE]: " + time + "ms");
     }
@@ -94,12 +96,11 @@ e remove 1.000.000 de elementos em ordem decrescente. */
             binaryTree.remove(i);
         }
 
-        long lastTime = System.currentTimeMillis();
-        long time = (lastTime - firstTime);
+        long lastTime   = System.currentTimeMillis();
+        long time       = (lastTime - firstTime);
 
         System.out.println("Árvore Binária de Busca [REMOÇÃO DECRESCENTE]: " + time + "ms");
     }
-
 
     public void testBS() {
         insert();
