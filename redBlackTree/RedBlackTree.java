@@ -383,27 +383,34 @@ public class RedBlackTree<ValueType extends Comparable> {
         
         RedBlackNode<ValueType> n;
         
+        // Enquanto árvore não é "consertada" completamente.
         while (x != root && x.color == RedBlackNode.black) {
+            // Se x é o filho da esquerda do pai
             if (x == x.parent.left) {
+                // define o irmão de n = x
                 n = x.parent.right;
+                // Caso 1: a cor de n é vermelho.
                 if (n.color == RedBlackNode.red) {
                     n.color = RedBlackNode.black;
                     x.parent.color = RedBlackNode.red;
                     leftTurn(x.parent);
                     n = x.parent.right;
                 }
+                // Caso 2: os dois filhos de n são pretos.
                 if (n.left.color == RedBlackNode.black &&
                         n.right.color == RedBlackNode.black) {
                     n.color = RedBlackNode.red;
                     x = x.parent;
                 }
                 else{
+                    // Caso 3: o filho da direita de n é preto.
                     if (n.right.color == RedBlackNode.black) {
                         n.left.color = RedBlackNode.black;
                         n.color = RedBlackNode.red;
                         rightTurn(n);
                         n = x.parent.right;
                     }
+                    // caso 4: n é preto, n.right é vermelho.
                     n.color = x.parent.color;
                     x.parent.color = RedBlackNode.black;
                     n.right.color = RedBlackNode.black;
@@ -411,26 +418,32 @@ public class RedBlackTree<ValueType extends Comparable> {
                     x = root;
                 }
             }
+            // Se x é o filho da direita do pai
             else{
+                // Define n como irmão de x
                 n = x.parent.left;
+                // Caso 1: a cor de n é vermelho.
                 if (n.color == RedBlackNode.red) {
                     n.color = RedBlackNode.black;
                     x.parent.color = RedBlackNode.red;
                     rightTurn(x.parent);
                     n = x.parent.left;
                 }
+                //Caso 2: os dois filhos de n são pretos.
                 if (n.right.color == RedBlackNode.black &&
                         n.left.color == RedBlackNode.black) {
                     n.color = RedBlackNode.red;
                     x = x.parent;
                 }
                 else{
+                    // Caso 3: o filho esquerdo de n é preto.
                     if (n.left.color == RedBlackNode.black) {
                         n.right.color = RedBlackNode.black;
                         n.color = RedBlackNode.red;
                         leftTurn(n);
                         n = x.parent.left;
                     }
+                    // Caso 4: n é preto e n.left é vermelho.
                     n.color = x.parent.color;
                     x.parent.color = RedBlackNode.black;
                     n.left.color = RedBlackNode.black;
@@ -439,70 +452,116 @@ public class RedBlackTree<ValueType extends Comparable> {
                 }
             }
         }
+
+        // define x como preto para garantir que não haja violação das propriedades da árvore rubro negra.
         x.color = RedBlackNode.black;
     }
     
+    // ""key"" é a chave cujo nó é o que queremos procurar
+    // "return" retorna um nó com a chave key se não for encontrada retorna nulo.
+    // Procura um nó com a chave k e retorna o primeiro nó, se não encontrar esse nó, retorna nulo.
     public RedBlackNode<ValueType> search(ValueType key) {
+        
         RedBlackNode<ValueType> current = root;
+        
+        // Enquanto não tenha chegado no fim da árvore, faça:
         while (!isNil(current)) {
-            if (current.key.equals(key))
+            // Se encontrar um nó com uma chave igual a key
+            if (current.key.equals(key)) 
+                // Retorna esse nó e sai da 'search(int)'
                 return current;
-            else if (current.key.compareTo(key) < 0)
-                current = current.right;
-            else
-                current = current.left;
+            // Vai para a esquerda ou direita com base no valor atual e da chave.
+            else if (current.key.compareTo(key) < 0) current = current.right;
+            // Vai para a esquerda ou direita com base no valor atual e da chave.
+            else current = current.left;
         }
+        // Retorna null caso não encontre um nó cuja chave seja "key"
         return null;
     }
     
-    public int numGreater(ValueType key) {
-        return findNumGreater(root,key);
+    // ""key"" é qualquer objeto comparável
+    // ""return"" é o número de elementos maior que 'key'
+    public int biggerNumber(ValueType key) {
+        /* Chama findBiggerNumber(root, key) que retornará 
+        * o número de nós cuja chave é maior que key */
+        return findBiggerNumber(root,key);
     }
     
-    public int numSmaller(ValueType key) {
-        return findNumSmaller(root,key);
+    // ""key"" é qualquer objeto comparável
+    // ""return"" retorna o número de elementos menor que a chave.
+    public int SmallerNumber(ValueType key) {]
+        /* Chama findSmallerNumber(root, key) que retornará 
+        * o número de nós cuja chave é maior que key */
+        return findSmallerNumber(root,key);
     }
     
-    public int findNumGreater(RedBlackNode<ValueType> node, ValueType key) {
-        if (isNil(node))
-            return 0;
+    // ""node"" é a raiz da árvore, a chave que compara outras chaves do nó.
+    // "return" retorna o número de nós maior que a chave.
+    public int findBiggerNumber(RedBlackNode<ValueType> node, ValueType key) {
+        // Caso base: se o nó for nulo, retorna 0.
+        if (isNil(node)) return 0;
+        
+        /* Se a chave for menor que o node.key, todos os elementos à direita do nó serão
+        * maior que a chave. Adiciona isso ao total e olha para a esquerda */
         else if (key.compareTo(node.key) < 0)
-            return 1+ node.numberRight + findNumGreater(node.left,key);
+            return 1 + node.numberRight + findBiggerNumber(node.left,key);
+        /* Se a chave for maior que o node.key, olha para a direita, 
+        * pois todos os elementos à esquerda do nó são menores que a chave */
         else
-            return findNumGreater(node.right,key);
+            return findBiggerNumber(node.right,key);
     }
     
-    public List<ValueType> getGreaterThan(ValueType key, Integer maxReturned) {
+    // Retorna a lista classificada de chaves maior que a chave. O tamanho da lista não excederá 'maxReturned'.
+    public List<ValueType> getBiggerThan(ValueType key, Integer maxReturned) {
+        
         List<ValueType> list = new ArrayList<ValueType>();
-        getGreaterThan(root, key, list);
+        
+        getBiggerThan(root, key, list);
+        
         return list.subList(0, Math.min(maxReturned, list.size()));
     }
     
-    private void getGreaterThan(RedBlackNode<ValueType> node, ValueType key, List<ValueType> list) {
-        if (isNil(node)) {
+    private void getBiggerThan(RedBlackNode<ValueType> node, ValueType key, List<ValueType> list) {
+        if (isNil(node)){
             return;
-        } else if (node.key.compareTo(key) > 0) {
-            getGreaterThan(node.left, key, list);
+        } 
+        else if (node.key.compareTo(key) > 0) {
+            getBiggerThan(node.left, key, list);
             list.add(node.key);
-            getGreaterThan(node.right, key, list);
-        } else {
-            getGreaterThan(node.right, key, list);
+            getBiggerThan(node.right, key, list);
+        } 
+        else {
+            getBiggerThan(node.right, key, list);
         }
     }
     
-    public int findNumSmaller(RedBlackNode<ValueType> node, ValueType key) {
+    // "node" é a raiz da árvore, a chave com a qual deve-se comparar as outras chaves do nó.
+    // "return" retorna o número de nós menor que a chave.
+    public int findSmallerNumber(RedBlackNode<ValueType> node, ValueType key) {
+        
+        // Caso base: se o nó for nulo, retorna 0.
         if (isNil(node)) return 0;
-        else if (key.compareTo(node.key) <= 0)
-            return findNumSmaller(node.left,key);
+        
+        /* Se key for menor que node.key, olha para a esquerda, 
+        * pois todos os elementos à direita do nó são maiores que key */
+        else if (key.compareTo(node.key) <= 0) return findSmallerNumber(node.left,key);
+        
+        /* Se a chave for maior que o node.key, todos os elementos à esquerda do nó 
+        * são menores que a chave. Assim, adiciona-o  ao total e olha para a direita. */
         else
-            return 1+ node.numberLeft + findNumSmaller(node.right,key);
+            return 1+ node.numberLeft + findSmallerNumber(node.right,key);
     }
     
+    // "node" é um RedBlackNode. Aqui é uma espécie de @Override que verifica se é nulo/nada.
+    // "return" retorna verdadeiro se o nó é nulo/nada/não existe e falso caso contrário.
     private boolean isNil(RedBlackNode node) {
         return node == nada;
     }
     
+    // "return" retorna o tamanho da árvore
+    // "return" é o número de nós, incluindo a raiz que a Árvore R.N enraizou na raiz.
     public int size() {
+        // Retorna o número de nós à esquerda da raiz + o número de nós à direita da raiz + a própria raiz.
         return root.numberLeft + root.numberRight + 1;
     }
 }
