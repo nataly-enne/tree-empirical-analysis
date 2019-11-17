@@ -44,8 +44,8 @@ public class RedBlackTree<ValueType extends Comparable> {
 
         // Verifica se ha existência de 'y.left' e faz as alterações.
         if (!isNil(y.left))
-            y.left.parent = x;
-            y.parent = x.parent;
+            y.left.parent   = x;
+            y.parent        = x.parent;
         
         if (isNil(x.parent)) // Verifica  se o pai de "x" é nulo.
             root = y;

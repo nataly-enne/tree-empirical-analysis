@@ -6,7 +6,8 @@ public class Main {
     public static final int size = 500_000;
 
     public static void main(String[] args) {
-        System.out.println("Análise empírica para " + size + " entradas.");
+
+        System.out.println("Análise empírica de árvores com " + size + " entradas.");
         System.out.println("---------------------------------------");
 
         BinarySearchMain binary = new BinarySearchMain(size);
