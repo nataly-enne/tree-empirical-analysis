@@ -3,7 +3,7 @@ import avlTree.AVLMain;
 import redBlackTree.RedBlackMain;
 
 public class Main {
-    public static final int size = 10;
+    public static final int size = 500_000;
 
     public static void main(String[] args) {
         System.out.println("Análise empírica para " + size + " entradas.");
