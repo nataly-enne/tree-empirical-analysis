@@ -25,3 +25,6 @@ sudo apt install default-jdk
 ```
 
 ### Também é possível executar o código em qualquer IDE.
+
+
+#### O documento com a análise empírica dos casos de testes e comentários pode ser acessado [aqui.](https://docs.google.com/document/d/19Tlck1uxfO6b4bRni5yQKzLy3MAjZP-r8jRGetooKmg/edit?usp=sharing)
